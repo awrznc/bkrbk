@@ -3,6 +3,18 @@ name = "bkrbk"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies.windows]
+# このバージョン以降は色々と依存Crateが増えるみたい
+# 一旦このバージョンで固定
+version = "0.54.0"
+features = [
+    "Win32_Media_Audio",
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_System_LibraryLoader",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input_KeyboardAndMouse",
+]
 
-[dependencies]
+[dependencies.gif]
+version = "0.13.1"
