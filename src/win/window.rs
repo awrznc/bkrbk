@@ -1,5 +1,7 @@
 //! ウィンドウを操作するための機能です。
 
+use crate::color::Color;
+
 use windows::{
     core::*,
     Win32::{Foundation::*, Graphics::Gdi::*, UI::WindowsAndMessaging::*},
@@ -35,8 +37,10 @@ impl Window {
         self.name.set_reference();
         self.hwnd = unsafe {
             CreateWindowExA(
-                // WINDOW_EX_STYLE::default(),
-                WS_EX_LAYERED,
+                // 透明度の指定を可能にする
+                WS_EX_LAYERED
+                // クリック不可にする
+                | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE,
                 class_name,
                 self.name.reference,
                 WS_POPUP,
@@ -60,7 +64,7 @@ impl Window {
             // 透明化
             SetLayeredWindowAttributes(
                 self.hwnd,
-                COLORREF(self.bg),
+                COLORREF(Color::new(self.bg).to_bgr_u32()),
                 0xFF,
                 LWA_COLORKEY | LWA_ALPHA,
             )

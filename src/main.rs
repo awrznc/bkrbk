@@ -13,7 +13,7 @@ fn parse_args() -> Result<(String, u32), Error> {
     let args = std::env::args().collect::<Vec<String>>();
     let path = args.get(1).cloned().ok_or(Error::ParseArgs)?;
     // let bg_color = args.get(2).cloned().ok_or(Error::ParseArgs)?;
-    Ok((path, u32::from_str_radix("FF0000", 16).unwrap()))
+    Ok((path, u32::from_str_radix("0000FF", 16).unwrap()))
 }
 
 fn get_image_size(image: &img::Gif) -> Result<(u16, u16), Error> {

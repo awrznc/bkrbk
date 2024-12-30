@@ -122,8 +122,7 @@ impl super::Core {
     }
 
     /// サブウィンドウをクリックした際にアクティブにしないようにする処理です。
-    ///
-    /// MEMO: ドロップシャドウにちらつきが発生するのは仕方がないことにする
+    /// 基本的にサブウィンドウの設定上クリックされることはありませんが、将来的に更に複数のウィンドウを扱う場合に役立ちそうなので残しておきます。
     pub(super) fn on_active(window: HWND) -> LRESULT {
         if let Some(this) = Self::get_property(window) {
             unsafe {
